@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sign up</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-blue-600">
+    <div class="flex flex-col items-center justify-center h-[700px] w-[100%]">
+        <div class="p-10 bg-white px-28">
+            <p class="text-2xl font-bold">Sign Up</p>
+            <p class="text-lg font-semibold">It's free and only takes a minute</p>
+            <form class="py-5 items-center" name="myform" onsubmit="validateform(event)">
+                <div class="py-2 flex flex-col">
+                    <label class="flex flex-col">Name</label>
+                    <input class="pb-3 border border-black p-1 w-56" id="name" type="text" name="name">
+                    <span id="nameerror" class="text-red-500"></span>
+                </div>
+                <div class="py-2 flex flex-col">
+                    <label class="flex flex-col">Email</label>
+                    <input autocomplete="email" class="pb-3 border border-black w-56 p-1" type="email" name="email"
+                        id="email">
+                    <span id="emailerror" class="text-red-500"></span>
+                </div>
+                <div class="py-2 flex flex-col">
+                    <label class="flex flex-col">Password</label>
+                    <input class="pb-3 border border-black w-56 p-1" type="password" name="password" id="password">
+                    <span id="passworderror" class="text-red-500"></span>
+                </div>
+                <div class="py-2 flex flex-col">
+                    <label class="flex flex-col">Confirm Password</label>
+                    <input class="pb-3 border border-black w-56 p-1" type="password" name="confirm-password"
+                        id="confirm-password">
+                    <span id="cpassworderror" class="text-red-500"></span>
+                </div>
+                <input type="submit" name="submit" value="Submit" id="submit" class="bg-green-300 px-6 py-1 ml-14 mt-6">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function validateform(event) {
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var confirmpassword = document.getElementById('confirm-password').value;
+
+
+
+
+            if (name == "") {
+                document.getElementById('nameerror').innerHTML = "* Please fill the user name field";
+                event.preventDefault();
+            } else if ((name.length < 5) || (name.length >= 20)) {
+                document.getElementById('nameerror').innerHTML = "* Name must be between 5 to 20 characters";
+                event.preventDefault();
+            } else if (!isNaN(name)) {
+                document.getElementById('nameerror').innerHTML = "* Name should not be in digits";
+                event.preventDefault();
+            } else {
+                document.getElementById('nameerror').innerHTML = "";
+            }
+
+
+
+
+            if (email == "") {
+                document.getElementById('emailerror').innerHTML = "* Please enter your email";
+                event.preventDefault();
+            }
+            else if (email.indexOf('@') <= 0) {
+                document.getElementById('emailerror').innerHTML = "* Invalid email format";
+                event.preventDefault();
+            }
+            else {
+                document.getElementById('emailerror').innerHTML = "";
+            }
+
+
+
+
+            if (password == "") {
+                document.getElementById('passworderror').innerHTML = "* Please enter a password";
+                event.preventDefault();
+            }
+
+
+            else if ((password.length < 5) || (password.length >= 20)) {
+                document.getElementById('passworderror').innerHTML = "* password will  be grater than 5 digits";
+                event.preventDefault();
+            }
+
+            else {
+                document.getElementById('passworderror').innerHTML = "";
+            }
+ 
+           
+
+            if (confirmpassword == "") {
+                document.getElementById('cpassworderror').innerHTML = " * plz fill this field  "
+                event.preventDefault();
+            }
+           else if (password != confirmpassword) {
+                document.getElementById('cpassworderror').innerHTML = "* password didnt match";
+                event.preventDefault();
+            }
+            else {
+                document.getElementById('cpassworderror').innerHTML = "";
+            }
+
+            if (name && email && password && confirmpassword && password == confirmpassword) {
+                event.preventDefault();
+                window.location.href = "login.html";
+            }
+
+           
+           
+
+
+        }
+    </script>
+</body>
+
+
+
+</html>
